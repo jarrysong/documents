@@ -78,10 +78,10 @@ AIDL的全称：Android Interface Definition Language，安卓接口定义语言
 ##### (2)fragment 的特点？（你用fragment有没有领略到一些乐趣，或者有没有踩过什么坑？）
 fragment的设计主要是把Activity界面包括其逻辑打碎成很多个独立的模块，这样便于模块的重用和更灵活地组装呈现多样的界面。
 
-- 1）	Fragment可以作为Activity界面的一个部分组成；
-- 2）	可以在一个Activity里面出现多个Fragment，并且一个fragment可以在多个Activity中使用；
-- 3）	在Activity运行中，可以动态地添加、删除、替换Fragment。
-- 4）	Fragment有自己的生命周期的，可以响应输入事件。
+- 1）Fragment可以作为Activity界面的一个部分组成；
+- 2）可以在一个Activity里面出现多个Fragment，并且一个fragment可以在多个Activity中使用；
+- 3）在Activity运行中，可以动态地添加、删除、替换Fragment。
+- 4）Fragment有自己的生命周期的，可以响应输入事件。
 
 踩过的坑：
 - 1.重叠；
