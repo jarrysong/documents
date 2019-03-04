@@ -23,8 +23,7 @@
 #### 2. 是否使用过本地广播，和全局广播有什么差别？（Ricky）
 - 1）正在发送的广播不会脱离应用程序，不用担心app的数据泄露；
 - 2）其他的程序无法发送到我的应用程序内部，不担心安全漏洞。（比如：如何做一个杀不死的服务---监听火的app 比如微信、友盟、极光的广播，来启动自己。）
-- 3）	发送本地广播比发送全局的广播高效。（全局广播要维护的广播集合表 效率更低。全局广播，意味着可以跨进程，就需要底层的支持。）
-
+- 3）发送本地广播比发送全局的广播高效。（全局广播要维护的广播集合表 效率更低。全局广播，意味着可以跨进程，就需要底层的支持。）
 - 4）本地广播不能用静态注册。----静态注册：可以做到程序停止后还能监听。
 使用：
 ```
@@ -83,7 +82,7 @@ fragment的设计主要是把Activity界面包括其逻辑打碎成很多个独�
 - 3）在Activity运行中，可以动态地添加、删除、替换Fragment。
 - 4）Fragment有自己的生命周期的，可以响应输入事件。
 
-踩过的坑：
+踩过的坑：https://blog.csdn.net/s297165331/article/details/81540615
 - 1.重叠；
 - 2.注解newAPI（兼容包解决）；
 - 3.Setarguement()初始化数据;
@@ -128,12 +127,13 @@ Notification，在v4兼容包里面有NotificationCompat类。5.0+出现的backg
 
 #### 8. launch mode 应用场景（百度、小米、乐视）（Ricky）
 栈：先进后出
+https://www.cnblogs.com/claireyuancy/p/7387696.html
 - 标准模式
 - SingleTop：使用场景：浏览器的书签；通讯消息聊天界面。
 - SingleTask：使用场景：某个Activity当做主界面的时候。
 - SingleInstance：使用场景：比如浏览器BrowserActivity很耗内存，很多app都会要调用它，这样就可以把该Activity设置成单例模式。比如：闹钟闹铃。
 
-#### 9. touch 事件传递流程（小米）（Ricky）
+#### 9. touch 事件传递流程（小米）（Ricky）https://www.jianshu.com/p/62b638e1712a
 #### 10. view 绘制流程（百度）（Ricky）
 - Measure：测量，测量自己。如果是ViewGroup就需要测量里面的所有childview.
 测量的结果怎么办？
@@ -172,14 +172,13 @@ OOM产生的原因：内存不足，android系统为每一个应用程序都设�
 
 ##### 如何避免内存泄露：
 ###### 1.减小对象的内存占用：
-- a)	使用更加轻量级的数据结构：
+- 1）使用更加轻量级的数据结构：
 考虑适当的情况下替代HashMap等传统数据结构而使用安卓专门为手机研发的数据结构类ArrayMap/SparseArray。SparseLongMap/SparseIntMap/SparseBoolMap更加高效。
 HashMap.put(string,Object);Object o = map.get(string);会导致一些没必要的自动装箱和拆箱。
-- b)	适当的避免在android中使用Enum枚举，替代使用普通的static常量。（一般还是提倡多用枚举---软件的架构设计方面；如果碰到这个枚举需要大量使用的时候就应该更加倾向于解决性能问题。）。
-- c)	较少Bitmap对象的内存占用。
+- 2）适当的避免在android中使用Enum枚举，替代使用普通的static常量。（一般还是提倡多用枚举---软件的架构设计方面；如果碰到这个枚举需要大量使用的时候就应该更加倾向于解决性能问题。）。
+- 3）较少Bitmap对象的内存占用。
 使用inSampleSize:计算图片压缩比例进行图片压缩，可以避免大图加载造成OOM; decodeformat：图片的解码格式选择，ARGB_8888/RGB_565/ARGB_4444/ALPHA_8,还可以使用WebP。
-- d)	使用更小的图片
-资源图片里面，是否存在还可以继续压缩的空间。
+- 3）使用更小的图片：资源图片里面，是否存在还可以继续压缩的空间。
 
 ###### 2.内存对象的重复利用:
 使用对象池技术，两种：
@@ -187,11 +186,10 @@ HashMap.put(string,Object);Object o = map.get(string);会导致一些没必要�
 - 2.利用系统既有的对象池机制。比如LRU(Last Recently Use)算法。
 
 例子:
-- a)	ListView/GridView源码可以看到重用的情况ConvertView的复用。RecyclerView中Recycler源码。
-- b)	Bitmap的复用<br>
-Listview等要显示大量图片。需要使用LRU缓存机制来复用图片。
-- C)	避免在onDraw方法里面执行对象的创建，要复用。避免内存抖动。
-- D) 常见的java基础问题---StringBuilder等
+- 1）ListView/GridView源码可以看到重用的情况ConvertView的复用。RecyclerView中Recycler源码。
+- 2）Bitmap的复用<br>Listview等要显示大量图片。需要使用LRU缓存机制来复用图片。
+- 3）避免在onDraw方法里面执行对象的创建，要复用。避免内存抖动。
+- 4）常见的java基础问题---StringBuilder等
 
 ###### 3.避免对象的内存泄露：
 ###### 4.使用一些内存的优化策略：

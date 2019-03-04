@@ -1,8 +1,9 @@
 
 [Android 必须知道2018年流行的框架库及开发语言](https://blog.csdn.net/csdn_aiyang/article/details/56016649)
 
+[2017年Android百大框架排行榜](https://www.cnblogs.com/jincheng-yangchaofan/articles/7018780.html)
 
-https://www.cnblogs.com/jincheng-yangchaofan/articles/7018780.html
+[2018 年初值得关注的 25 个新 Android 库和项目](https://www.oschina.net/translate/25-new-android-libraries-and-projects-2018)
 
 [Android 15个流行网络框架](https://www.cnblogs.com/onone/articles/6606448.html)
 
